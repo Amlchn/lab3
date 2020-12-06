@@ -40,7 +40,7 @@ public class GornerTableModel extends AbstractTableModel {
 
 	public int getColumnCount() {
 		
-		return 2;
+		return 3;
 	}
 
 	public Object getValueAt(int row, int column ) {
@@ -64,8 +64,10 @@ for(int i =0; i<coefficients.length;i++) {
 		switch(column) {
 		case 0:
 			return "значение X";
-			default:
+		case 1:
 				return "значение многочлена";
+				default:
+					return "pyfxty";
 		}
 	}
 
