@@ -2,7 +2,6 @@ package bsu.rfe.java.group9.molchanov.var17;
 
 import javax.swing.table.AbstractTableModel;
 
-@SuppressWarnings("serial")
 public class GornerTableModel extends AbstractTableModel {
 	private Double[] coefficients;
 	private Double from;
@@ -27,7 +26,14 @@ public class GornerTableModel extends AbstractTableModel {
 	return step;
 	}
 
-	@SuppressWarnings("deprecation")
+
+	public Double[] getCoefficients() {
+		return coefficients;
+	}
+	public void setCoefficients(Double[] coefficients) {
+		this.coefficients = coefficients;
+	}
+
 	public int getRowCount() {
 		return new Double(Math.ceil((to-from)/step)).intValue()+1;
 		}
@@ -37,14 +43,20 @@ public class GornerTableModel extends AbstractTableModel {
 		return 2;
 	}
 
-	public Object getValueAt(int row, int column) {
-	  double x=from +step*row;
+	public Object getValueAt(int row, int column ) {
+	  double x=from+step*row;
+	
 	  if(column==0) {
 		  return x;
 	  } 
 	  else {
 		  Double result=0.0;
-		  return result;
+for(int i =0; i<coefficients.length;i++) {
+	result+=Math.pow(x, coefficients.length-1-i) * coefficients[i];
+}
+			
+
+				  return result;
 	  }
 	}
 
