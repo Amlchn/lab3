@@ -63,6 +63,15 @@ public class MainFrame extends JFrame {
 		menuBar.add(fileMenu);
 		JMenu tableMenu = new JMenu("Таблица");
 		menuBar.add(tableMenu);
+		JMenu infMenu = new JMenu("Справка");
+		menuBar.add(infMenu);
+		infMenu.add( new AbstractAction("О программе")
+        {
+            public void actionPerformed(ActionEvent event)
+            {
+                JOptionPane.showMessageDialog(MainFrame.this,"Автор:\nМолчанов\n9-я группа", "Информация",JOptionPane.QUESTION_MESSAGE);
+            }
+        });
 		Action saveToTextAction = new AbstractAction("Сохранить в текстовый файл") {
 			public void actionPerformed(ActionEvent event) {
 				if(fileChooser==null) {
