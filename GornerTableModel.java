@@ -45,19 +45,18 @@ public class GornerTableModel extends AbstractTableModel {
 
 	public Object getValueAt(int row, int column ) {
 	  double x=from+step*row;
-	
-	  if(column==0) {
-		  return x;
-	  } 
-	  else {
-		  Double result=0.0;
-for(int i =0; i<coefficients.length;i++) {
-	result+=Math.pow(x, coefficients.length-1-i) * coefficients[i];
-}
-			
-
-				  return result;
+	  Double result=0.0;
+	  for(int i =0; i<coefficients.length;i++) {
+			result+=Math.pow(x, coefficients.length-1-i) * coefficients[i];
+		}
+	  boolean flag = (result>0)?true:false;
+	  switch(column) {
+	  case 0: return x;
+	  case 1: return result;
+	  case 2: return flag;
 	  }
+	  return "err";
+	  
 	}
 
 	public String getColumnName(int column) {
@@ -71,8 +70,12 @@ for(int i =0; i<coefficients.length;i++) {
 		}
 	}
 
-	public Class<?> getColumnClass(int columnIndex) {
-		return Double.class;
+	public Class<?> getColumnClass(int column) {
+	switch(column) {
+	case 0: return Double.class;
+	case 1: return Double.class;
+	default : return Boolean.class;
+	}
 	}
 
 }
